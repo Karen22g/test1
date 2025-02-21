@@ -26,7 +26,7 @@ df = px.data.gapminder()
 st.title("Interactive Dashboard with Streamlit & Plotly")
 
 # Select Year with Slider
-year = st.slider("Select Year:", int(df["year"].min()), int(df["year"].max()), int(df["year"].min()))
+year = st.slider("Select Year:", int(df["year"].min()), int(df["year"].max()), int(df["year"].min()), step =5)
 
 # Filter Data
 filtered_df = df[df.year == year]
