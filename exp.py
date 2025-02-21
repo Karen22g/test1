@@ -18,3 +18,22 @@ fig = px.bar(df, x="Category", y="Values", title="Sample Bar Chart")
 
 # Display the Plotly chart in Streamlit
 st.plotly_chart(fig)
+
+# Load Sample Data
+df = px.data.gapminder()
+
+# Title
+st.title("Interactive Dashboard with Streamlit & Plotly")
+
+# Select Year with Slider
+year = st.slider("Select Year:", int(df["year"].min()), int(df["year"].max()), int(df["year"].min()))
+
+# Filter Data
+filtered_df = df[df.year == year]
+
+# Create Plotly Scatter Plot
+fig = px.scatter(filtered_df, x="gdpPercap", y="lifeExp", size="pop", color="continent",
+                 hover_name="country", log_x=True, size_max=60)
+
+# Display Plot
+st.plotly_chart(fig)
