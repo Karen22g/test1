@@ -37,5 +37,3 @@ st.plotly_chart(fig_radar)
 # Tabla de datos interactiva
 st.subheader("📄 Datos Filtrados")
 st.dataframe(df_filtered)
-
-st.title( "Visualización del dataset Iris" ... par Karen Juliana Gomez Duran
