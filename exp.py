@@ -34,7 +34,7 @@ with col1:
     st.write(f"**Ancho:** {stats.loc['mean', 'sepal_width']:.2f} ± {stats.loc['std', 'sepal_width']:.2f}")
 
 with col3:
-    st.image(image, caption=f"Flor Iris - {selected_species.capitalize()}", use_container_width=True)
+    st.image(image, caption=f"Flor Iris - {especie.capitalize()}", use_container_width=True)
  
 with col5:
     st.subheader("🌺 Pétalos")
