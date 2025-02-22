@@ -6,7 +6,9 @@ import seaborn as sns
 # Cargar el dataset
 st.title("📊 Tablero Gerencial - Análisis de Iris")
 df = sns.load_dataset("iris")
- 
+
+species_list = df["species"].unique()
+especie = st.selectbox("Seleccione una especie:", species_list)
 df_filtered = df.loc[df["species"]==especie]
  
 # KPIs
