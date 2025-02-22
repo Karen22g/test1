@@ -43,7 +43,18 @@ fig_radar = px.line_polar(df_melted, r="Value", theta="Feature",
                           title="Perfil Promedio de Cada Especie")
 
 st.plotly_chart(fig_radar)
- 
-# Tabla de datos interactiva
+
+st.title("Visualización del dataset Iris")
+    
+df_filtered = df[df["species"] == species]    
 st.subheader("📄 Datos Filtrados")
 st.dataframe(df_filtered)
+
+st.write("### Boxplot de Sepal Length y Sepal Width para la Especie Seleccionada")
+col1, col2 = st.columns(2)
+with col1:
+ fig1 = px.box(df_filtered, y="sepal_length", title="Sepal Length")
+ st.plotly_chart(fig1)
+with col2:
+  fig2 = px.box(df_filtered, y="sepal_width", title="Sepal Width")
+  st.plotly_chart(fig2)
