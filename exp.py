@@ -46,7 +46,7 @@ st.plotly_chart(fig_radar)
 
 st.title("Visualización del dataset Iris")
     
-df_filtered = df[df["species"] == species]    
+df_filtered = df.loc[df["species"] == especie]    
 st.subheader("📄 Datos Filtrados")
 st.dataframe(df_filtered)
 
