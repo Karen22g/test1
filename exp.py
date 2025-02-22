@@ -7,7 +7,7 @@ import seaborn as sns
 st.title("📊 Tablero Gerencial - Análisis de Iris")
 df = sns.load_dataset("iris")
  
-df_filtered = df[df["species"].isin(especie)]
+df_filtered = df.loc[df["species"]==especie]
  
 # KPIs
 st.subheader("📌 Métricas Clave")
