@@ -15,9 +15,13 @@ df_filtered = df[df["species"].isin(especie)]
  
 # KPIs
 st.subheader("📌 Métricas Clave")
-st.metric(label="🌱 Número de Registros", value=df_filtered.shape[0])
-st.metric(label="🌿 Promedio Sepal Length", value=round(df_filtered["sepal_length"].mean(), 2))
-st.metric(label="🌸 Promedio Petal Width", value=round(df_filtered["petal_width"].mean(), 2))
+col1, col2, col3 = st.columns(3)
+with col1:
+    st.metric(label="🌱 Número de Registros", value=df_filtered.shape[0])
+with col2:
+    st.metric(label="🌿 Promedio Sepal Length", value=round(df_filtered["sepal_length"].mean(), 2))
+with col3:
+    st.metric(label="🌸 Promedio Petal Width", value=round(df_filtered["petal_width"].mean(), 2))
  
 # Gráfico de dispersión interactivo
 st.subheader("📈 Relación entre Largo y Ancho de Pétalos")
