@@ -59,11 +59,12 @@ col1, col2 = st.columns(2)
 with col1:
  fig1 = px.box(df_filtered, y="sepal_length", title="Sepal Length")
  st.plotly_chart(fig1)
- fig2 = px.box(df_filtered, y="sepal_width", title="Sepal Width")
- st.plotly_chart(fig2)
- 
+ fig4 = px.box(df_filtered, y="petal_length", title="Petal Length")
+ st.plotly_chart(fig4)
+
 with col2:
+  fig2 = px.box(df_filtered, y="sepal_width", title="Sepal Width")
+  st.plotly_chart(fig2)
   fig3 = px.box(df_filtered, y="petal_width", title="Petal Width")
   st.plotly_chart(fig3)
-  fig4 = px.box(df_filtered, y="petal_length", title="Petal Length")
-  st.plotly_chart(fig4)
+
