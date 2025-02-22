@@ -23,9 +23,8 @@ species_images = {"setosa": "setosa.png",
     "versicolor": "versicolor.png",
     "virginica": "virginica.png"}
  
-selected_species = st.sidebar.selectbox("Selecciona una especie de Iris:", species_images.keys())
 stats = df_filtered.describe().loc[["mean", "std"]]
-image_path = species_images[selected_species]
+image_path = species_images[especie]
 image = Image.open(image_path)
 col1, col2, col3, col4, col5 = st.columns([1, 1, 2, 1, 1])  # Imagen en el centro
 
