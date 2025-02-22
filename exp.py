@@ -45,7 +45,7 @@ st.title("Visualización del dataset Iris")
 species_list = df["species"].unique()
 especie = st.selectbox("Seleccione una especie:", species_list)
 
-df_filtered = df.loc[df["species"].isin(especie)]    
+df_filtered = df.loc[df["species"]==especie]    
 st.subheader("📄 Datos Filtrados")
 st.dataframe(df_filtered)
 
