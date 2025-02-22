@@ -7,10 +7,6 @@ import seaborn as sns
 st.title("📊 Tablero Gerencial - Análisis de Iris")
 df = sns.load_dataset("iris")
  
-# Sidebar con filtros
-st.sidebar.header("Filtros")
-especie = st.sidebar.multiselect("Selecciona la especie", df["species"].unique(), default=df["species"].unique())
- 
 df_filtered = df[df["species"].isin(especie)]
  
 # KPIs
@@ -45,7 +41,10 @@ fig_radar = px.line_polar(df_melted, r="Value", theta="Feature",
 st.plotly_chart(fig_radar)
 
 st.title("Visualización del dataset Iris")
-    
+
+species_list = df["species"].unique()
+especie = st.selectbox("Seleccione una especie:", species_list)
+
 df_filtered = df.loc[df["species"].isin(especie)]    
 st.subheader("📄 Datos Filtrados")
 st.dataframe(df_filtered)
