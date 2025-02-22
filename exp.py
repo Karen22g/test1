@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import seaborn as sns
+from PIL import Image
  
 # Cargar el dataset
 st.title("📊 Tablero Gerencial - Análisis de Iris")
@@ -17,6 +18,29 @@ st.plotly_chart(fig)
 species_list = df["species"].unique()
 especie = st.selectbox("Seleccione una especie:", species_list)
 df_filtered = df.loc[df["species"]==especie]
+
+species_images = {"setosa": "setosa.png",
+    "versicolor": "versicolor.png",
+    "virginica": "virginica.png"}
+ 
+selected_species = st.sidebar.selectbox("Selecciona una especie de Iris:", species_images.keys())
+stats = df_filtered.describe().loc[["mean", "std"]]
+image_path = species_images[selected_species]
+image = Image.open(image_path)
+col1, col2, col3, col4, col5 = st.columns([1, 1, 2, 1, 1])  # Imagen en el centro
+
+with col1:
+    st.subheader("📏 Sépalos")
+    st.write(f"**Largo:** {stats.loc['mean', 'sepal_length']:.2f} ± {stats.loc['std', 'sepal_length']:.2f}")
+    st.write(f"**Ancho:** {stats.loc['mean', 'sepal_width']:.2f} ± {stats.loc['std', 'sepal_width']:.2f}")
+
+with col3:
+    st.image(image, caption=f"Flor Iris - {selected_species.capitalize()}", use_container_width=True)
+ 
+with col5:
+    st.subheader("🌺 Pétalos")
+    st.write(f"**Largo:** {stats.loc['mean', 'petal_length']:.2f} ± {stats.loc['std', 'petal_length']:.2f}")
+    st.write(f"**Ancho:** {stats.loc['mean', 'petal_width']:.2f} ± {stats.loc['std', 'petal_width']:.2f}")
  
 # KPIs
 st.subheader("📌 Métricas Clave")
@@ -67,4 +91,3 @@ with col2:
   st.plotly_chart(fig2)
   fig3 = px.box(df_filtered, y="petal_width", title="Petal Width")
   st.plotly_chart(fig3)
-
