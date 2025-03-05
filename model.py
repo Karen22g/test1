@@ -53,9 +53,13 @@ tipo_camion = st.radio("🚛 Tipo de Camión", ["Seco", "Refrigerado", "Platafor
 if st.button("Calcular Tarifa"):
     distancia, tarifa_min, tarifa_media, tarifa_max = calcular_tarifa(origen, destino, tipo_camion)
 
-    # 🔹 Mostrar resultados
     st.success(f"📏 Distancia estimada: **{distancia:.0f} millas**")
     st.info(f"💲 Intervalo de tarifa esperado:")
+    
+    col1, col2, col3 = st.columns(3)
+    col1.metric("Inferior", f"${tarifa_min:,.2f}")
+    col2.metric("Promedio", f"${tarifa_media:,.2f}")
+    col3.metric("Superior", f"${tarifa_max:,.2f}")
     
     # 🔹 Barra de intervalo interactiva
     fig = go.Figure()
