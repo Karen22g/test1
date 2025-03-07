@@ -38,7 +38,8 @@ data = {
     "distance": np.random.uniform(200, 1500, 100),
     "trailer": np.random.choice(["Flatbed", "Reefer", "Van"], 100),
     "size": np.random.choice(["Full", "Partial"], 100),
-    "weight": np.random.randint(5000, 45000, 100)
+    "weight": np.random.randint(5000, 45000, 100),
+    "reference_id": np.random.randint(1000, 9999, 100)
 }
 df = pd.DataFrame(data)
 
