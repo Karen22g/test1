@@ -104,7 +104,7 @@ if search_btn:
         
         # Lane Rate Evaluation
         y_predicted = filtered_df["rate"].mean()
-        mad = filtered_df["rate"].mad()
+        mad = 50
         
         def categorize_rate(rate):
             if rate < (y_predicted - mad):
