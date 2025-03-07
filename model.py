@@ -62,15 +62,17 @@ st.markdown("""
         border: none;
         transition: none;
     }
+    /* Color cuando se hace hover */
     div[data-testid="stButton"] button:hover {
-        background-color: #0747d9
+        background-color: #0747d9;
         color: white;
-        font-size: 16px;
-        font-weight: bold;
-        border-radius: 8px;
-        padding: 10px;
-        border: none;
-        transition: none;
+    }
+    
+    /* Color cuando se presiona */
+    div[data-testid="stButton"] button:active {
+        background-color: #527bd9;
+        color: white;
+    
     }
     </style>
     """, unsafe_allow_html=True)
