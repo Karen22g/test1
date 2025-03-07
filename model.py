@@ -46,7 +46,7 @@ selected_destination = col2.selectbox("Select destination", df["city_destination
 selected_trailer = col3.selectbox("Trailer Type", df["trailer"].unique())
 
 with col4:
-    st.markdown("<br><br>", unsafe_allow_html=True)  # Añade más espacio vertical
+    st.markdown("<br>", unsafe_allow_html=True)  # Añade más espacio vertical
     search_btn = st.button("Search", use_container_width=True)  # Hace que el botón ocupe todo el ancho
 
 # CSS para evitar hover en el botón
