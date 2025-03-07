@@ -17,6 +17,13 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
+# Styling
+title_html = """
+    <h1 style='text-align: center; color: #527bd9;'>Find a load for your truck</h1>
+    <p style='text-align: center; color: #333;'>Add the origin, destination, and trailer type, then click Search to find loads for you.</p>
+"""
+st.markdown(title_html, unsafe_allow_html=True)
+
 # Simulated Data
 np.random.seed(42)
 data = {
@@ -80,54 +87,32 @@ st.markdown("""
 selected_lane = (selected_origin +  " ➝ " + selected_destination)
 
 if search_btn:
-    # Filter Data
     filtered_df = df[(df["lane"] == selected_lane) & (df["trailer"] == selected_trailer)]
     
     if not filtered_df.empty:
-        st.success(f"🔍 Found **{len(filtered_df)}** loads for this lane.")
+        colA, colB = st.columns([4, 1])
+        colA.success(f"🔍 Found **{len(filtered_df)}** loads for this lane.")
         
-        # Table Display
-        filtered_df["specifications"] = filtered_df["size"] + " | " + filtered_df["weight"].astype(str) + " lbs"
-        st.dataframe(filtered_df[["city_origin", "state_origin", "city_destination", "state_destination", "pickup_date", "dropoff_date", "age", "rate", "distance", "trailer", "specifications"]].rename(columns={
-            "city_origin": "Origin City",
-            "state_origin": "Origin State",
-            "city_destination": "Destination City",
-            "state_destination": "Destination State",
-            "pickup_date": "Pickup Date",
-            "dropoff_date": "Dropoff Date",
-            "age": "Age (days)",
-            "rate": "Rate ($)",
-            "distance": "Distance (miles)",
-            "trailer": "Trailer Type",
-            "specifications": "Specifications"
-        }))
+        with colB:
+            with st.expander("🌟 Rate Evaluation"):
+                st.write("### Rate Category")
+                st.image("/mnt/data/image.png", use_column_width=True)
+                
+        filtered_df["details"] = filtered_df["reference_id"].astype(str) + " | Click for details"
+        selected_row = st.selectbox("Select a load to view details", filtered_df["details"])
         
-        # Lane Rate Evaluation
-        y_predicted = filtered_df["rate"].mean()
-        mad = 50
-        
-        def categorize_rate(rate):
-            if rate < (y_predicted - mad):
-                return "🔴 Red (Low)"
-            elif rate < y_predicted:
-                return "🟠 Orange (Below Avg)"
-            elif rate < (y_predicted + mad):
-                return "🟡 Yellow (Above Avg)"
-            else:
-                return "🟢 Green (High)"
-        
-        filtered_df["Rate Category"] = filtered_df["rate"].apply(categorize_rate)
-        st.write("### Lane Rate Evaluation")
-        st.dataframe(filtered_df[["rate", "Rate Category"]].rename(columns={"rate": "Rate ($)"}))
-        
-        # Map Visualization
-        st.write("### Load Details on Map")
-        origin_coords = (34.0522, -118.2437)  # Placeholder for geolocation data
-        destination_coords = (32.7767, -96.7970)
-        
-        map_ = folium.Map(location=origin_coords, zoom_start=5)
-        folium.Marker(origin_coords, popup="Origin", icon=folium.Icon(color="blue")).add_to(map_)
-        folium.Marker(destination_coords, popup="Destination", icon=folium.Icon(color="red")).add_to(map_)
-        folium_static(map_)
+        if selected_row:
+            load_details = filtered_df[filtered_df["details"] == selected_row].iloc[0]
+            
+            with st.expander("📅 View Load Details"):
+                st.write(f"**Reference ID:** {load_details['reference_id']}")
+                st.write(f"**Contact Info:** +1-800-LOAD-INFO")
+                
+                origin_coords = (34.0522, -118.2437)
+                destination_coords = (32.7767, -96.7970)
+                map_ = folium.Map(location=origin_coords, zoom_start=5)
+                folium.Marker(origin_coords, popup="Origin", icon=folium.Icon(color="blue")).add_to(map_)
+                folium.Marker(destination_coords, popup="Destination", icon=folium.Icon(color="red")).add_to(map_)
+                folium_static(map_)
     else:
         st.warning("⚠️ No loads available for this selection.")
