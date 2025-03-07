@@ -41,9 +41,12 @@ lanes = df["lane"].unique()
 
 # User Inputs
 col1, col2, col3, col4 = st.columns([2, 2, 2, 1])
-selected_lane = col1.selectbox("Select Lane", lanes)
-selected_trailer = col2.selectbox("Trailer Type", df["trailer"].unique())
+selected_origin = col1.selectbox("Select origin", df["city_origin"].unique())
+selected_destination = col2.selectbox("Select destination", df["city_destination"].unique())
+selected_trailer = col3.selectbox("Trailer Type", df["trailer"].unique())
 search_btn = col4.button("Search")
+
+selected_lane = (selected_origin +  " ➝ " + selected_destination)
 
 if search_btn:
     # Filter Data
