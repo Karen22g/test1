@@ -96,7 +96,7 @@ if search_btn:
         with colB:
             with st.expander("🌟 Rate Evaluation"):
                 st.write("### Rate Category")
-                st.image("/mnt/data/image.png", use_column_width=True)
+                st.image("image.png", use_column_width=True)
                 
         filtered_df["details"] = filtered_df["reference_id"].astype(str) + " | Click for details"
         selected_row = st.selectbox("Select a load to view details", filtered_df["details"])
