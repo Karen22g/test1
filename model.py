@@ -11,7 +11,7 @@ st.set_page_config(page_title="Freight Rate Calculator", layout="wide", page_ico
 # Styling
 st.markdown("""
     <style>
-    .stApp {background-color: #1e1e2e; color: white;}
+    .stApp {background-color: #adbee5; color: white;}
     .title {color: #00ccff; text-align: center; font-size: 32px;}
     .subtitle {color: #cccccc; text-align: center; font-size: 18px;}
     </style>
