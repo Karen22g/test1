@@ -44,7 +44,10 @@ col1, col2, col3, col4 = st.columns([2, 2, 2, 1])
 selected_origin = col1.selectbox("Select origin", df["city_origin"].unique())
 selected_destination = col2.selectbox("Select destination", df["city_destination"].unique())
 selected_trailer = col3.selectbox("Trailer Type", df["trailer"].unique())
-search_btn = col4.button("Search")
+
+with col4:
+    st.markdown("<br>", unsafe_allow_html=True)  # Espaciado para alinear el botón
+    search_btn = st.button("Search")
 
 selected_lane = (selected_origin +  " ➝ " + selected_destination)
 
