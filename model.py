@@ -46,8 +46,27 @@ selected_destination = col2.selectbox("Select destination", df["city_destination
 selected_trailer = col3.selectbox("Trailer Type", df["trailer"].unique())
 
 with col4:
-    st.markdown("<br>", unsafe_allow_html=True)  # Espaciado para alinear el botón
-    search_btn = st.button("Search")
+    st.markdown("<br><br>", unsafe_allow_html=True)  # Añade más espacio vertical
+    search_btn = st.button("Search", use_container_width=True)  # Hace que el botón ocupe todo el ancho
+
+# CSS para evitar hover en el botón
+st.markdown("""
+    <style>
+    div[data-testid="stButton"] button {
+        background-color: #00ccff;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 8px;
+        padding: 10px;
+        border: none;
+        transition: none;
+    }
+    div[data-testid="stButton"] button:hover {
+        background-color: #00a3cc;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
 selected_lane = (selected_origin +  " ➝ " + selected_destination)
 
