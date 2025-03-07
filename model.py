@@ -53,7 +53,7 @@ with col4:
 st.markdown("""
     <style>
     div[data-testid="stButton"] button {
-        background-color: #00ccff;
+        background-color: #527bd9;
         color: white;
         font-size: 16px;
         font-weight: bold;
@@ -63,7 +63,14 @@ st.markdown("""
         transition: none;
     }
     div[data-testid="stButton"] button:hover {
-        background-color: #00a3cc;
+        background-color: #0747d9
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 8px;
+        padding: 10px;
+        border: none;
+        transition: none;
     }
     </style>
     """, unsafe_allow_html=True)
